@@ -1,17 +1,12 @@
-// get our connection to the socket.io server
 var socket = io();
-// listen to the server for the `add-circle` event
 socket.on('add-circle', function (data) {
-  // console.log(data);
   addCircle(data);
 });
 
-// listen to the server for the `clear-display` event
 socket.on('clear-display', function () {
   circles.innerHTML = '';
 });
 
-// listen to the server for when the player list has changed
 socket.on('update-player-list', function (data) {
   var playerList = '<li>' + data.join('</li><li>') + '</li>';
   players.innerHTML = playerList;
@@ -39,7 +34,6 @@ document.getElementsByTagName('button')[0].addEventListener('click', function() 
 do {
   initials = getInitials();
 } while (initials.length < 2 || initials.length > 3);
-// new code below
 socket.emit('register-player', initials);
 
 function getInitials() {
@@ -47,8 +41,6 @@ function getInitials() {
   return input ? input.toUpperCase() : '';
 }
 
-// was: function addCircle(x, y, dia, rgba)
-// now using ES2015 destructuring assignment
 function addCircle( {x, y, dia, rgba, initials} ) {
   var el = document.createElement('div');
   el.style.left = x - Math.floor(dia / 2 + 0.5) + 'px';
