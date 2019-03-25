@@ -1,3 +1,6 @@
+var socket = io();
+console.log(socket);
+
 var circles = document.getElementById('circles');
 var initials = '';
 
@@ -40,3 +43,4 @@ function getRandomRGBA() {
   return ['rgba(', randomBetween(0, 255), ',', randomBetween(0, 255), ',',
     randomBetween(0, 255), ',', randomBetween(2, 10) / 10, ')'].join('');
 }
+
